@@ -1,0 +1,44 @@
+<h1 class="text-center mb-3">{{title}}</h1>
+{{!-- To use a variable with handlebars use double curly brackets
+Center the text in html, margin bottom 3 --}}
+
+</ul>
+{{! The below block of code adds a member with a POST API command using the below html form }}
+{{! This could have been coded in its own file, but for the sake of the tut it is here }}
+<form action="/api/members" method="POST" class="mb4">
+{{!-- when the submit button is clicked on the web page it is going to hit the 
+Create Member method in the members.js using the POST API interfacing using the route 
+as specified in the above action 
+The above action has already been created --}}
+    <div class="form-group"> {{! add a form group class }}
+        <label for="name">Name</label>
+        <input type="text" name="name" class="form-control"> 
+        {{!-- "form-control" bootstrap classes 
+        The above line of code sends JSON from a form 
+        Its important to have the name attribute as it is sent in the request body 
+        Its the same as when we sent the API calls from Postman, but now we're sending 
+        it as a form 
+        name ios name as in the Members.js array file--}}
+    </div>
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" name="email" class="form-control">
+        {{!-- "form-control" bootstrap classes 
+        The above line of code sends JSON from a form but this time for the email --}}
+    </div>
+    <input type="submit" value="Add Member" class="btn btn-primary btn-block">
+    {{!-- create submit member 
+        create bootsrap class of btn... --}}
+</form>
+
+<h4>Members</h4>
+<ul class="list-group">
+    {{#each members}} {{! loop through in handlebars }}
+        <li class="list-group-item">{{this.name}}: {{this.email}}</li>
+    {{/each}} {{! end loop }}
+</ul>
+{{! To pass the members and list them here in this template }}
+
+
+<a href="/api/members" class="btn btn-light mt-4">Visit API</a>
+{{! creates a link to hte API }}
